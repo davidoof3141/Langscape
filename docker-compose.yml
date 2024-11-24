@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  fastapi:
+    image: fastapi-app
+    container_name: backend
+    build:
+      context: ./backend/ # Path to your FastAPI app's Dockerfile
+    volumes:
+      - ./backend:/app # Mount the local backend directory to the container's /app directory
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1 # Optional: to ensure logs are streamed immediately
+  vite:
+    image: vite-app
+    build:
+      context: ./frontend/
+    container_name: frontend
+    ports:
+      - "5173:5173" # Expose Vite's default development port
+    volumes:
+      - ./frontend:/app # Mount the local directory into the container
+      - /app/node_modules # Ignore node_modules to avoid conflicts
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev", "--", "--host"]
