@@ -70,7 +70,7 @@ function ChatPage() {
 
     try {
       // Send message to FastAPI backend
-      const response = await axios.post('http://localhost:8000/chat', {
+      const response = await axios.post('http://48.209.19.13:8000/chat', {
         message: inputMessage
       });
 
