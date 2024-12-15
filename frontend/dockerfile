@@ -13,7 +13,7 @@ RUN npm install
 # Copy the entire project to the container
 COPY . .
 
-RUN npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init && npm install react-router-dom && npm install axios
+RUN npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init && npm install react-router-dom && npm install axios && npm i react-markdown@8.0.6
 
 # Expose Vite's default port
 EXPOSE 5173

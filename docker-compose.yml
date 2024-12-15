@@ -11,6 +11,9 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1 # Optional: to ensure logs are streamed immediately
+    networks:
+      - app_network
+
   vite:
     image: vite-app
     build:
@@ -23,4 +26,10 @@ services:
       - /app/node_modules # Ignore node_modules to avoid conflicts
     environment:
       - NODE_ENV=development
-    command: ["npm", "run", "dev", "--", "--host"]
+    networks:
+      - app_network
+    command: [ "npm", "run", "dev", "--", "--host" ]
+
+networks:
+  app_network:
+    driver: bridge
