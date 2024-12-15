@@ -13,7 +13,7 @@ app = FastAPI(debug=True)
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["http://48.209.19.13:5173/"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
@@ -33,7 +33,7 @@ class ChatRequest(BaseModel):
 
 
 # Conversation history to maintain context
-conversation_history = []
+
 
 # Maximum number of messages to keep in context
 MAX_CONTEXT_MESSAGES = 5
@@ -43,6 +43,7 @@ MAX_CONTEXT_MESSAGES = 5
 async def chat_with_spanish_tutor(request: ChatRequest):
     try:
         # Add user message to conversation history
+        conversation_history = []
         conversation_history.append({
             "role": "user",
             "content": request.message

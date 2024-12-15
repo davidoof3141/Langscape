@@ -10,18 +10,15 @@ const Navbar = () => {
   const NavIcons = [
     {
       svg: FolderIcon,
-      text: 'Home',
-      url: '/'
+      text: 'Home'
     },
     {
       svg: ChartIcon,
-      text: 'Profile',
-      url: '/'
+      text: 'Profile'
     },
     {
       svg: MailIcon,
-      text: 'Messages',
-      url: '/'
+      text: 'Messages'
     },
     {
       svg: TeacherIcon,
@@ -30,13 +27,14 @@ const Navbar = () => {
     },
     {
       svg: CardsIcon,
-      text: 'Vocabulary',
-      url: '/vocabulary'
+      text: 'Vocabulary'
     }
   ];
 
-  const handleNavigation = (url: string) => {
-    window.location.href = url;
+  const handleNavigation = (url: string | undefined) => {
+    if (url) {
+      window.location.href = url;
+    }
   };
 
   return (
